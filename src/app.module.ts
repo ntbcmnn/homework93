@@ -8,6 +8,9 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { Artist, ArtistSchema } from './schemas/artist.schema';
 import { Album, AlbumSchema } from './schemas/album.schema';
 import { Track, TrackSchema } from './schemas/track.schema';
+import { ArtistFixtureService } from './fixtures/artists.fixture';
+import { AlbumFixtureService } from './fixtures/albums.fixture';
+import { TrackFixtureService } from './fixtures/tracks.fixture';
 
 @Module({
   imports: [
@@ -24,6 +27,11 @@ import { Track, TrackSchema } from './schemas/track.schema';
     TracksController,
     AlbumsController,
   ],
-  providers: [AppService],
+  providers: [
+    AppService,
+    ArtistFixtureService,
+    AlbumFixtureService,
+    TrackFixtureService,
+  ],
 })
 export class AppModule {}
