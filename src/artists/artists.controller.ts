@@ -30,7 +30,6 @@ export class ArtistsController {
   @Get(':id')
   async getOne(@Param('id') id: string) {
     const artist = await this.artistModel.findById(id);
-
     if (!artist) throw new NotFoundException('Artist not found');
 
     return artist;
@@ -47,8 +46,7 @@ export class ArtistsController {
     const artist = new this.artistModel({
       name: artistDto.name,
       info: artistDto.info,
-      image:
-        file && file.filename ? '/uploads/products/' + file.filename : null,
+      image: file && file.filename ? '/uploads/artists/' + file.filename : null,
     });
 
     return await artist.save();
@@ -57,7 +55,6 @@ export class ArtistsController {
   @Delete(':id')
   async delete(@Param('id') id: string) {
     const artist = await this.artistModel.findById(id);
-
     if (!artist) throw new NotFoundException('Artist not found');
 
     await this.artistModel.findByIdAndDelete(id);
