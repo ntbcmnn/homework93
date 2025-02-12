@@ -7,8 +7,10 @@ export type ArtistDocument = Artist & Document;
 export class Artist {
   @Prop({ required: true })
   name: string;
+
   @Prop({ default: null })
   image: string;
+
   @Prop({ default: null })
   info: string;
 }

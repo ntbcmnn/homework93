@@ -12,10 +12,13 @@ export class Album {
     ref: 'Artist',
   })
   artist: Artist;
+
   @Prop({ required: true })
   name: string;
+
   @Prop({ required: true })
   release_year: number;
+
   @Prop({ default: null })
   image: string;
 }
