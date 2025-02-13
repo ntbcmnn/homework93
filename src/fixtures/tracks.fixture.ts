@@ -5,6 +5,7 @@ import { Album, AlbumDocument } from '../schemas/album.schema';
 import { Artist, ArtistDocument } from '../schemas/artist.schema';
 import { Track, TrackDocument } from '../schemas/track.schema';
 import { AlbumFixtureService } from './albums.fixture';
+import { ArtistFixtureService } from './artists.fixture';
 
 @Injectable()
 export class TrackFixtureService implements OnModuleInit {
@@ -13,11 +14,12 @@ export class TrackFixtureService implements OnModuleInit {
     @InjectModel(Album.name) private albumModel: Model<AlbumDocument>,
     @InjectModel(Artist.name) private artistModel: Model<ArtistDocument>,
     private albumFixtureService: AlbumFixtureService,
+    private artistFixtureService: ArtistFixtureService,
   ) {}
 
   async onModuleInit() {
     await this.trackModel.deleteMany({});
-
+    await this.artistFixtureService.onModuleInit();
     await this.albumFixtureService.onModuleInit();
 
     const existingTracks = await this.trackModel.find();
