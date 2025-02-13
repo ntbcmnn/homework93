@@ -11,6 +11,8 @@ export class ArtistFixtureService implements OnModuleInit {
   ) {}
 
   async onModuleInit() {
+    await this.artistModel.deleteMany({});
+
     const existingArtists = await this.artistModel.find();
 
     if (existingArtists.length === 0) {
@@ -18,17 +20,17 @@ export class ArtistFixtureService implements OnModuleInit {
         {
           name: 'Skryptonite',
           info: 'Kazakh singer and musical producer, founder of the Musica36 label.',
-          image: '/uploads/artists/skryptonite.jpg',
+          image: '/fixtures/artists/skryptonite.jpg',
         },
         {
           name: 'Noize MC',
           info: 'Russian rap-rock-artist, songwriter and musician.',
-          image: '/uploads/artists/noize_mc.jpeg',
+          image: '/fixtures/artists/noize_mc.jpeg',
         },
         {
           name: 'Monetochka',
           info: 'Russian singer, songwriter and musician.',
-          image: '/uploads/artists/monetochka.jpg',
+          image: '/fixtures/artists/monetochka.jpg',
         },
       ]);
       console.log('Artists fixture loaded.');

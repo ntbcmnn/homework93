@@ -16,6 +16,8 @@ export class AlbumFixtureService implements OnModuleInit {
   async onModuleInit() {
     await this.artistFixtureService.onModuleInit();
 
+    await this.albumModel.deleteMany({});
+
     const existingAlbums = await this.albumModel.find();
 
     if (existingAlbums.length === 0) {
@@ -35,40 +37,39 @@ export class AlbumFixtureService implements OnModuleInit {
           artist: skryptonite._id,
           name: 'Yeahh PT. 1',
           release_year: 2024,
-          image: '/uploads/albums/yeahh.png',
+          image: '/fixtures/albums/yeahh.png',
         },
         {
           artist: skryptonite._id,
           name: 'Uroboros: Street 36',
           release_year: 2017,
-          image: '/uploads/albums/uroboros.jpg',
+          image: '/fixtures/albums/uroboros.jpg',
         },
         {
           artist: noizeMC._id,
           name: 'Last album',
           release_year: 2010,
-          image: '/uploads/albums/last_album.jpg',
+          image: '/fixtures/albums/last_album.jpg',
         },
         {
           artist: noizeMC._id,
           name: 'New album',
           release_year: 2012,
-          image: '/uploads/albums/new_album.jpg',
+          image: '/fixtures/albums/new_album.jpg',
         },
         {
           artist: monetochka._id,
           name: 'Coloring books for adults',
           release_year: 2018,
-          image: '/uploads/albums/coloring_books.jpg',
+          image: '/fixtures/albums/coloring_books.jpg',
         },
         {
           artist: monetochka._id,
           name: 'Prayers. Anecdotes. Toasts.',
           release_year: 2024,
-          image: '/uploads/albums/prayers.jpeg',
+          image: '/fixtures/albums/prayers.jpeg',
         },
       ]);
-
       console.log('Albums fixture loaded.');
     }
   }

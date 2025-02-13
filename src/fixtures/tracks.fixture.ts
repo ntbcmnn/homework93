@@ -16,6 +16,8 @@ export class TrackFixtureService implements OnModuleInit {
   ) {}
 
   async onModuleInit() {
+    await this.trackModel.deleteMany({});
+
     await this.albumFixtureService.onModuleInit();
 
     const existingTracks = await this.trackModel.find();
