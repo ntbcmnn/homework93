@@ -8,9 +8,11 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { Artist, ArtistSchema } from './schemas/artist.schema';
 import { Album, AlbumSchema } from './schemas/album.schema';
 import { Track, TrackSchema } from './schemas/track.schema';
-import { ArtistFixtureService } from './fixtures/artists.fixture';
-import { AlbumFixtureService } from './fixtures/albums.fixture';
-import { TrackFixtureService } from './fixtures/tracks.fixture';
+import { UsersController } from './users/users.controller';
+import { AuthService } from './auth/auth.service';
+import { LocalStrategy } from './local.strategy';
+import { TokenAuthGuard } from './token-auth/token-auth.guard';
+import { User, UserSchema } from './schemas/user.schema';
 
 @Module({
   imports: [
@@ -19,6 +21,7 @@ import { TrackFixtureService } from './fixtures/tracks.fixture';
       { name: Artist.name, schema: ArtistSchema },
       { name: Album.name, schema: AlbumSchema },
       { name: Track.name, schema: TrackSchema },
+      { name: User.name, schema: UserSchema },
     ]),
   ],
   controllers: [
@@ -26,12 +29,8 @@ import { TrackFixtureService } from './fixtures/tracks.fixture';
     ArtistsController,
     TracksController,
     AlbumsController,
+    UsersController,
   ],
-  providers: [
-    AppService,
-    ArtistFixtureService,
-    AlbumFixtureService,
-    TrackFixtureService,
-  ],
+  providers: [AppService, AuthService, LocalStrategy, TokenAuthGuard],
 })
 export class AppModule {}
